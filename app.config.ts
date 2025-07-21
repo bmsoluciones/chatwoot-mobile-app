@@ -65,11 +65,11 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     },
     extra: {
       eas: {
-        projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+        projectId: "c9601da5-28a2-46f1-985a-261fcfebef8f",// process.env.EXPO_PUBLIC_PROJECT_ID,
         storybookEnabled: process.env.EXPO_STORYBOOK_ENABLED,
       },
     },
-    owner: 'chatwoot',
+    owner: 'jherrera25',
     plugins: [
       [
         'react-native-permissions',

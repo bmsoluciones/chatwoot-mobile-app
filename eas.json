@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 12.3.0",
+    "version": ">= 16.16.0",
     "appVersionSource": "remote"
   },
   "build": {
@@ -8,15 +8,14 @@
       "developmentClient": true,
       "distribution": "internal"
     },
+    "preview": {
+      "distribution": "internal"
+    },
     "production": {
       "autoIncrement": true
     }
   },
   "submit": {
-    "production": {
-      "android": {
-        "track": "internal" // (enum: production, beta, alpha, internal)
-      }
-    }
+    "production": {}
   }
 }
