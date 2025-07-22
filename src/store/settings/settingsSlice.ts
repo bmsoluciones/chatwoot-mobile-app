@@ -20,8 +20,8 @@ interface SettingsState {
   pushToken: string;
 }
 const initialState: SettingsState = {
-  baseUrl: 'app.chatwoot.com',
-  installationUrl: 'https://app.chatwoot.com/',
+  baseUrl: 'smartchatla.com',
+  installationUrl: 'https://smartchatla.com/',
   uiFlags: {
     isSettingUrl: false,
     isUpdating: false,

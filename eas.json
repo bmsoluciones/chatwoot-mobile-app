@@ -12,6 +12,11 @@
       "distribution": "internal"
     },
     "production": {
+       "env": {
+        "SENTRY_AUTH_TOKEN": "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",
+        "SENTRY_ORG": "tc-soluciones",
+        "SENTRY_PROJECT": "chatwoot-mobile"
+      },
       "autoIncrement": true
     }
   },
