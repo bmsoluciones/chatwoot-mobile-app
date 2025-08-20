@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAppDispatch } from '@/hooks';
 import { updateAttachments } from '@/store/conversation/sendMessageSlice';
 import { useRefsContext } from '@/context';
-import { AttachFileIcon, CameraIcon, PhotosIcon } from '@/svg-icons';
+import { AttachFileIcon, CameraIcon, PhotosIcon, UnassignedIcon  } from '@/svg-icons';
 import { tailwind } from '@/theme';
 import { useHaptic, useScaleAnimation } from '@/utils';
 import { Icon } from '@/components-next/common';
@@ -16,6 +16,8 @@ import { MAXIMUM_FILE_UPLOAD_SIZE } from '@/constants';
 import i18n from '@/i18n';
 import { showToast } from '@/helpers/ToastHelper';
 import { findFileSize } from '@/helpers/FileHelper';
+import axios from 'axios';
+import { getHeaders, getBaseUrl, getUser } from '../../../../services/auth';
 
 export const handleOpenPhotosLibrary = async dispatch => {
   if (Platform.OS === 'ios') {
@@ -190,7 +192,62 @@ const handleAttachFile = async dispatch => {
   }
 };
 
-const ADD_MENU_OPTIONS = [
+
+const handleStartConversation = async (dispatch, senderId: number, contact: ContactUser ,inboxId: number) => {
+   //const headers = await getHeaders();
+   const baseurl = await getBaseUrl();
+   const user = await getUser();
+    if (!user || !baseurl) return;
+
+    const API_ENDPOINT = `${baseurl}api/v1/accounts/${user.account_id}/conversations`;
+    console.log('inboxId',inboxId);
+
+ 
+  try {
+    const requestBody = {
+      inbox_id: inboxId, 
+      contact_id: contact?.id, 
+      source_id: contact?.phoneNumber?.replace('+', ''),
+      message: {
+        content:
+          'Mensaje de inicio de conversación',
+        template_params: {
+          name: 'hello_world',
+          category: 'UTILITY',
+          language: 'en_US',
+          processed_params: {},
+        },
+      },
+      assignee_id: senderId,
+    };
+
+    const headers = {
+      api_access_token: user.access_token,
+      'Content-Type': 'application/json',
+    };
+
+
+    const response = await axios.post(API_ENDPOINT, requestBody, { headers });
+
+    //console.log('Respuesta exitosa de la API:', response.data);
+
+  } catch (error) { {
+      console.error('Error al realizar la petición:', error);
+
+      if (axios.isAxiosError(error)) {
+        console.error('Detalles del error de la API:', error.response?.data);
+        Alert.alert(
+          'Error de API',
+          `Hubo un problema al iniciar la conversación: ${error.response?.data?.message || error.message}`
+        );
+      } else {
+        Alert.alert('Error', 'No se pudo iniciar la conversación. Revisa la conexión y vuelve a intentarlo.');
+      }
+    }
+   }
+};
+
+const ADD_MENU_OPTIONS : MenuOptionItem[] = [
   {
     icon: <PhotosIcon />,
     title: 'Photos',
@@ -206,7 +263,15 @@ const ADD_MENU_OPTIONS = [
     title: 'Attach File',
     handlePress: handleAttachFile,
   },
+  /*
+   {
+    icon: <PhotosIcon />,
+    title: 'Iniciar Conversación',
+    handlePress: handleStartConversation,
+  },*/
+  
 ];
+  
 
 export const validateFileAndSetAttachments = async (dispatch, attachment) => {
   const { fileSize } = attachment;
@@ -219,11 +284,14 @@ export const validateFileAndSetAttachments = async (dispatch, attachment) => {
 
 type MenuOptionProps = {
   index: number;
-  menuOption: (typeof ADD_MENU_OPTIONS)[0];
+  menuOption: MenuOptionItem
+  senderId: number
+  conversationContact: ContactUser;
+  inboxId: number; 
 };
 
 const MenuOption = (props: MenuOptionProps) => {
-  const { index, menuOption } = props;
+  const { index, menuOption, senderId,conversationContact,  inboxId} = props;
   const dispatch = useAppDispatch();
   const { macrosListSheetRef } = useRefsContext();
 
@@ -232,12 +300,13 @@ const MenuOption = (props: MenuOptionProps) => {
 
   const handlePress = () => {
     hapticSelection?.();
-    menuOption?.handlePress(dispatch);
+    menuOption?.handlePress(dispatch, senderId, conversationContact, inboxId  );
     if (menuOption.title === 'Macros') {
       macrosListSheetRef.current?.present();
     }
   };
-
+  
+  
   return (
     <Animated.View style={[tailwind.style('mb-3'), animatedStyle]}>
       <Pressable onPress={handlePress} {...handlers}>
@@ -257,19 +326,55 @@ const MenuOption = (props: MenuOptionProps) => {
   );
 };
 
-export const CommandOptionsMenu = () => {
+type ContactUser = {
+  id: number;
+  phoneNumber?: string | null;
+} | undefined;
+
+type CommandOptionsMenuProps = {
+  senderId: number
+  conversationContact: ContactUser;
+  inboxId: number;
+  showStartConversationOption: boolean;
+};
+
+type MenuOptionItem = {
+  icon: JSX.Element;
+  title: string;
+  handlePress: (
+    dispatch: any,
+    senderId: number,
+    contact: ContactUser,
+    inboxId: number
+  ) => void | Promise<void>;
+};
+
+export const CommandOptionsMenu = ({ senderId, conversationContact, inboxId,showStartConversationOption   }: CommandOptionsMenuProps) => {
   const { bottom } = useSafeAreaInsets();
   const isAndroid = Platform.OS === 'android';
   const containerHeight = isAndroid
     ? 150 + (bottom === 0 ? 16 : bottom)
     : 110 + (bottom === 0 ? 16 : bottom);
+
+  const optionsToShow: MenuOptionItem[] = [...ADD_MENU_OPTIONS];
+
+  if (showStartConversationOption) {
+    optionsToShow.push({
+      icon: <UnassignedIcon  />,
+      title: 'Start Conversation',
+      handlePress: handleStartConversation,
+    });
+  }
   return (
     <Animated.View
       entering={SlideInDown.springify().damping(38).stiffness(240)}
       exiting={SlideOutDown.springify().damping(38).stiffness(240)}
-      style={tailwind.style('mx-1 pt-2 items-start', `h-[${containerHeight}px]`)}>
-      {ADD_MENU_OPTIONS.map((menuOption, index) => {
-        return <MenuOption key={menuOption.title} {...{ menuOption, index }} />;
+      style={[
+        tailwind.style('mx-1 pt-2 items-start'),
+        { paddingBottom: bottom === 0 ? 16 : bottom }
+      ]}>
+      {optionsToShow.map((menuOption, index) => {
+        return <MenuOption key={menuOption.title} {...{ menuOption, index, senderId,conversationContact,inboxId }} />;
       })}
     </Animated.View>
   );

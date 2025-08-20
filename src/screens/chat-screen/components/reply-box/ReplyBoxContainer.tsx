@@ -100,8 +100,13 @@ const BottomSheetContent = () => {
   } = useChatWindowContext();
 
   const conversation = useAppSelector(state => selectConversationById(state, conversationId));
+  const conversationContact = conversation?.meta?.sender;
   const { inboxId, canReply } = conversation || {};
   const inbox = useAppSelector(state => (inboxId ? selectInboxById(state, inboxId) : undefined));
+  const shouldShowStartConversationOption = !canReply && !!inbox && !!conversation;
+
+  
+
 
   const selectAgents = useAppSelector(selectAssignableParticipantsByInboxId);
   const agents = inboxId ? selectAgents(inboxId, '') : [];
@@ -122,6 +127,9 @@ const BottomSheetContent = () => {
   const lastEmail = useAppSelector(state =>
     shouldShowReplyHeader ? getLastEmailInSelectedChat(state, { conversationId }) : null,
   );
+
+
+
 
   useEffect(() => {
     if (!lastEmail) return;
@@ -348,6 +356,7 @@ const BottomSheetContent = () => {
   };
 
   const shouldShowCannedResponses = messageContent?.charAt(0) === '/';
+  const currentMessagePayload = getMessagePayload(messageContent);
 
   return (
     <Animated.View layout={LinearTransition.springify().damping(38).stiffness(240)}>
@@ -405,8 +414,13 @@ const BottomSheetContent = () => {
           </Animated.View>
         </Animated.View>
 
-        {isAddMenuOptionSheetOpen ? (
-          <CommandOptionsMenu />
+        {isAddMenuOptionSheetOpen && inboxId ? (
+          <CommandOptionsMenu
+            senderId={currentMessagePayload.sender.id} 
+            conversationContact={conversationContact}
+            inboxId={inboxId}
+            showStartConversationOption={shouldShowStartConversationOption}
+          />
         ) : attachmentsLength > 0 ? (
           <AttachedMedia />
         ) : null}

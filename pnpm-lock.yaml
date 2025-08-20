@@ -248,13 +248,13 @@ importers:
         version: 4.5.5
       '@storybook/addon-ondevice-actions':
         specifier: ^8.4.2
-        version: 8.4.2(prettier@3.3.3)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)(storybook@8.4.5(prettier@3.3.3))
+        version: 8.4.2(prettier@3.3.3)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)(storybook@8.4.5(prettier@2.8.8))
       '@storybook/addon-ondevice-controls':
         specifier: ^8.4.2
-        version: 8.4.2(p2kr24n6mc3dpf6ydi4x22xp5a)
+        version: 8.4.2(c67b4c4f1c5ebb914c581a6807fdbd0e)
       '@storybook/react-native':
         specifier: ^8.4.2
-        version: 8.4.2(svqkok7ma5zjm2v2ojmb7luoxq)
+        version: 8.4.2(3d359324a487094f04de2126e3bbe16d)
       '@testing-library/jest-native':
         specifier: ^5.1.2
         version: 5.4.3(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react-test-renderer@18.3.1(react@18.2.0))(react@18.2.0)
@@ -2540,6 +2540,11 @@ packages:
 
   '@testing-library/jest-native@5.4.3':
     resolution: {integrity: sha512-/sSDGaOuE+PJ1Z9Kp4u7PQScSVVXGud59I/qsBFFJvIbcn4P6yYw6cBnBmbPF+X9aRIsTJRDl6gzw5ZkJNm66w==}
+    deprecated: |-
+      DEPRECATED: This package is no longer maintained.
+      Please use the built-in Jest matchers available in @testing-library/react-native v12.4+.
+
+      See migration guide: https://callstack.github.io/react-native-testing-library/docs/migration/jest-matchers
     peerDependencies:
       react: '>=16.0.0'
       react-native: '>=0.59'
@@ -2547,6 +2552,7 @@ packages:
 
   '@testing-library/react-native@11.5.4':
     resolution: {integrity: sha512-6DRzMHqili5pp1JRm7fh80SAP48aR25b37gohlLoKbqGBpDw8BbZTad7Luzktm9MU5DQUm7xyzg07Z1CyveVFA==}
+    deprecated: This version is no longer maintained. Upgrade to @latest (at least v12.4.0).
     peerDependencies:
       jest: '>=28.0.0'
       react: '>=16.8.0'
@@ -5805,6 +5811,7 @@ packages:
 
   react-native-document-picker@9.3.1:
     resolution: {integrity: sha512-Vcofv9wfB0j67zawFjfq9WQPMMzXxOZL9kBmvWDpjVuEcVK73ndRmlXHlkeFl5ZHVsv4Zb6oZYhqm9u5omJOPA==}
+    deprecated: the package was renamed, follow migration instructions at https://shorturl.at/QYT4t
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -10082,7 +10089,7 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@storybook/addon-actions@8.4.5(storybook@8.4.5(prettier@3.3.3))':
+  '@storybook/addon-actions@8.4.5(storybook@8.4.5(prettier@2.8.8))':
     dependencies:
       '@storybook/global': 5.0.0
       '@types/uuid': 9.0.8
@@ -10098,9 +10105,9 @@ snapshots:
       storybook: 8.4.5(prettier@2.8.8)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-ondevice-actions@8.4.2(prettier@3.3.3)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)(storybook@8.4.5(prettier@3.3.3))':
+  '@storybook/addon-ondevice-actions@8.4.2(prettier@3.3.3)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)(storybook@8.4.5(prettier@2.8.8))':
     dependencies:
-      '@storybook/addon-actions': 8.4.5(storybook@8.4.5(prettier@3.3.3))
+      '@storybook/addon-actions': 8.4.5(storybook@8.4.5(prettier@2.8.8))
       '@storybook/core': 8.4.5(prettier@3.3.3)
       '@storybook/global': 5.0.0
       fast-deep-equal: 2.0.1
@@ -10113,7 +10120,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@storybook/addon-ondevice-controls@8.4.2(p2kr24n6mc3dpf6ydi4x22xp5a)':
+  '@storybook/addon-ondevice-controls@8.4.2(c67b4c4f1c5ebb914c581a6807fdbd0e)':
     dependencies:
       '@gorhom/bottom-sheet': 4.6.4(@types/react-native@0.73.0(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(@types/react@18.2.79)(react-native-gesture-handler@2.20.0(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native-reanimated@3.15.4(@babel/core@7.25.7)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       '@react-native-community/datetimepicker': 8.2.0(expo@51.0.37(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7)))(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -10121,7 +10128,7 @@ snapshots:
       '@storybook/addon-controls': 8.4.5(storybook@8.4.5(prettier@3.3.3))
       '@storybook/core': 8.4.5(prettier@3.3.3)
       '@storybook/react-native-theming': 8.4.2(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
-      '@storybook/react-native-ui': 8.4.2(nfrlszv7ivbhx2ldx4kt4hngpm)
+      '@storybook/react-native-ui': 8.4.2(679a01f38c04a6f8f73a6b39543491cf)
       deep-equal: 1.1.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -10213,7 +10220,7 @@ snapshots:
       react: 18.2.0
       react-native: 0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0)
 
-  '@storybook/react-native-ui@8.4.2(bkxe2a2frawvn2cgx432o5guhy)':
+  '@storybook/react-native-ui@8.4.2(35a620439d71e15bea233bfbe69bb00a)':
     dependencies:
       '@gorhom/bottom-sheet': 4.6.4(@types/react-native@0.73.0(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(@types/react@18.2.79)(react-native-gesture-handler@2.20.0(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native-reanimated@3.15.4(@babel/core@7.25.7)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       '@storybook/core': 8.4.5(prettier@2.8.8)
@@ -10239,7 +10246,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@storybook/react-native-ui@8.4.2(nfrlszv7ivbhx2ldx4kt4hngpm)':
+  '@storybook/react-native-ui@8.4.2(679a01f38c04a6f8f73a6b39543491cf)':
     dependencies:
       '@gorhom/bottom-sheet': 4.6.4(@types/react-native@0.73.0(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(@types/react@18.2.79)(react-native-gesture-handler@2.20.0(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native-reanimated@3.15.4(@babel/core@7.25.7)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       '@storybook/core': 8.4.5(prettier@3.3.3)
@@ -10265,7 +10272,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@storybook/react-native@8.4.2(svqkok7ma5zjm2v2ojmb7luoxq)':
+  '@storybook/react-native@8.4.2(3d359324a487094f04de2126e3bbe16d)':
     dependencies:
       '@gorhom/bottom-sheet': 4.6.4(@types/react-native@0.73.0(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(@types/react@18.2.79)(react-native-gesture-handler@2.20.0(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native-reanimated@3.15.4(@babel/core@7.25.7)(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0))(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       '@storybook/core': 8.4.5(prettier@2.8.8)
@@ -10273,7 +10280,7 @@ snapshots:
       '@storybook/global': 5.0.0
       '@storybook/react': 8.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(storybook@8.4.5(prettier@3.3.3))(typescript@5.6.3)
       '@storybook/react-native-theming': 8.4.2(react-native@0.74.5(@babel/core@7.25.7)(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
-      '@storybook/react-native-ui': 8.4.2(bkxe2a2frawvn2cgx432o5guhy)
+      '@storybook/react-native-ui': 8.4.2(35a620439d71e15bea233bfbe69bb00a)
       chokidar: 3.6.0
       commander: 8.3.0
       dedent: 1.5.3
@@ -11747,7 +11754,7 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.1
       eslint: 8.57.1
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-import@2.31.0)(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
       is-bun-module: 1.2.1
@@ -11760,7 +11767,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-import@2.31.0)(eslint@8.57.1))(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -11791,7 +11798,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-plugin-import@2.31.0)(eslint@8.57.1))(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3

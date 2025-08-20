@@ -17,7 +17,7 @@ if (__DEV__) {
   require('./ReactotronConfig');
 }
 // Ref: https://dev.to/dannyhw/how-to-swap-between-react-native-storybook-and-your-app-p3o
-export default (() => {
+export default Sentry.wrap((() => {
   if (isStorybookEnabled === 'true') {
     // eslint-disable-next-line
     return require('./.storybook').default;
@@ -29,4 +29,4 @@ export default (() => {
 
   console.log('Loading Development App');
   return App;
-})();
+})());

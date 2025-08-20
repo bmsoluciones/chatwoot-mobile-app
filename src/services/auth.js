@@ -49,3 +49,18 @@ export const getUserDetails = async () => {
     return { accountId, userId, name, email };
   } catch (error) {}
 };
+
+export const getUser = async () => {
+  try {
+    const state = await getStore().getState();
+    const { user } = state.auth;
+
+    // Si no hay usuario, devuelve null
+    if (!user) {
+      return null;
+    }
+    return user;
+  } catch (error) {
+    return null;
+  }
+};
